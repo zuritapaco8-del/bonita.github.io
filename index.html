@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi bonita ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Fondo degradado suave en tonos azules/pasteles */
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Contenedor principal */
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        /* El Sobre (Tonos Azules) */
+        .envelope {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            background-color: #7dd3fc;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+        }
+
+        /* Solapa del sobre */
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 110px solid #38bdf8;
+            transform-origin: top;
+            transition: transform 0.4s ease 0.2s;
+            z-index: 3;
+        }
+
+        /* Lados del sobre */
+        .envelope::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 160px solid #0ea5e9;
+            border-right: 160px solid #0ea5e9;
+            border-top: 110px solid transparent;
+            border-bottom: 110px solid #0ea5e9;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 2;
+        }
+
+        /* Sello de corazón Azul */
+        .heart-seal {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            width: 45px;
+            height: 45px;
+            background-color: #0284c7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 22px;
+            border-radius: 50%;
+            z-index: 4;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* La Carta */
+        .letter {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            width: 290px;
+            height: 200px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.6s ease, top 0.6s ease;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Imagen recortada */
+        .letter-img {
+            width: 85px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #38bdf8;
+            margin-bottom: 8px;
+        }
+
+        .letter h1 {
+            font-size: 1.2rem;
+            color: #0369a1;
+            margin-bottom: 6px;
+        }
+
+        .letter p {
+            font-size: 0.85rem;
+            color: #334155;
+            line-height: 1.35;
+        }
+
+        .signature {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #0ea5e9;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* --- Animaciones al abrir --- */
+        .envelope-wrapper.open .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope-wrapper.open .heart-seal {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+
+        .envelope-wrapper.open .letter {
+            transform: translateY(-145px);
+            z-index: 2;
+            height: auto;
+            min-height: 320px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        /* Elementos flotantes */
+        .floating-element {
+            position: absolute;
+            pointer-events: none;
+            animation: floatUp 4s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope"></div>
+        <div class="heart-seal">💙</div>
+        <div class="letter">
+            <img src="https://i.pinimg.com/736x/1b/54/6e/1b546e5bc6e03ec8eb4e7b8b2e1b12b5.jpg" alt="Detalle" class="letter-img">
+            <h1>Para mi bonita... ✨</h1>
+            <p>Aunque todavía no nos conocemos en persona, hablar contigo se ha vuelto mi parte favorita del día. Me gustas muchísimo y me encanta la bonita conexión que estamos armando. Tengo muchas ganas de que llegue el día de vernos y empezar a construir algo muy lindo juntos.</p>
+            <div class="signature">Att: Tu ing. en sistemas 👨‍💻</div>
+        </div>
+    </div>
+
+    <script>
+        const wrapper = document.getElementById('envelopeWrapper');
+        // Partículas: Corazones azules y flores blancas/azules/rosas
+        const particles = ['💙', '🌸', '🌼', '🩵', '✨'];
+
+        wrapper.addEventListener('click', () => {
+            wrapper.classList.toggle('open');
+            
+            if(wrapper.classList.contains('open')) {
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(createElement, i * 150);
+                }
+                setInterval(createElement, 400);
+            }
+        });
+
+        function createElement() {
+            if (!wrapper.classList.contains('open')) return;
+
+            const element = document.createElement('div');
+            element.classList.add('floating-element');
+            
+            const randomParticle = particles[Math.floor(Math.random() * particles.length)];
+            element.innerHTML = randomParticle;
+            
+            element.style.left = Math.random() * 100 + 'vw';
+            element.style.fontSize = Math.random() * 18 + 14 + 'px';
+            element.style.animationDuration = Math.random() * 2 + 3 + 's';
+            
+            document.body.appendChild(element);
+
+            setTimeout(() => {
+                element.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
